@@ -1,0 +1,187 @@
+.appView {
+    flex: 1;
+    margin-top: 1%;
+    padding-right: 1%;
+    overflow: hidden;
+}
+
+.container {
+    margin: 4px;
+    overflow: hidden;
+    position: fixed;
+}
+
+.container>div {
+    padding: 0.5em;
+}
+
+.container {
+    display: grid;
+    width: 100%;
+    grid-template-columns: 380px 400px 1fr;
+    grid-auto-rows: minmax(100px, auto);
+}
+
+.appViewTopbar {
+    display: flex;
+    margin-bottom: 2%;
+    align-items: normal;
+    justify-content: space-between;
+}
+
+.appViewTitle {
+    display: flex;
+    font-weight: bold;
+    margin-top: 2%;
+    margin-left: 2%;
+    font-size: 25px;
+    color: lightslategray;
+    margin-bottom: 10px;
+    padding-right: 40%;
+}
+
+.appsLocationsDomainsMenu {
+    display: flex;
+    justify-content: space-evenly;
+    height: 10%;
+    margin-top: 20px;
+    margin-left: 10%;
+    padding-left: 400px;
+    margin-bottom: 10px;
+}
+
+.appActionsList {
+    align-items: center;
+    display: flex;
+}
+
+.newAppButton {
+    height: 30%;
+    margin-top: 15px;
+    margin-left: 8px;
+    margin-right: 10px;
+    margin-bottom: 30px;
+    display: flex;
+}
+
+.appsTableContent {
+    margin-left: 20px;
+    height: 500px;
+    overflow: hidden;
+}
+
+.MuiDataGrid-root .MuiDataGrid-cell:focus-within {
+    outline: none !important;
+}
+
+.appsListEdit {
+    border: none;
+    border-radius: 25px;
+    width: 70px;
+    padding: 10px 15px;
+    background-color: lightskyblue;
+    box-shadow: 5px 0 15px -2px #8848;
+    color: white;
+    font-weight: bold;
+    margin-right: 20px;
+}
+
+.appsListNumber {
+    border: none;
+    border-radius: 20px;
+    width: 60px;
+    padding: 10px 15px;
+    background-color: lightslategray;
+    box-shadow: 5px 0 15px -2px #8848;
+    color: white;
+    font-weight: bold;
+    margin-left: 10%;
+    margin-right: 20px;
+}
+
+.appsDynamicNumber {
+    border: none;
+    border-radius: 20px;
+    width: 60px;
+    padding: 10px 15px;
+    background-color: lightsalmon;
+    box-shadow: 5px 0 15px -2px #8848;
+    color: white;
+    font-weight: bold;
+    margin-left: 10%;
+    margin-right: 20px;
+}
+
+.appsListWalk {
+    border: none;
+    border-radius: 25px;
+    width: 70px;
+    padding: 10px 15px;
+    background-color: rgb(15, 146, 140);
+    box-shadow: 5px 0 15px -2px #8848;
+    color: white;
+    font-weight: bold;
+    margin-right: 20px;
+}
+
+.appsListQuery {
+    border: none;
+    border-radius: 25px;
+    width: 70px;
+    padding: 10px 15px;
+    background-color: rgb(149, 93, 102);
+    box-shadow: 5px 0 15px -2px #8848;
+    color: white;
+    font-weight: bold;
+    margin-right: 20px;
+}
+
+.appsListDelete {
+    color: lightcoral;
+}
+
+.entityItemIcon {
+    width: 50px;
+    height: 50px;
+    margin-top: 0%;
+    background-size: contain;
+    background-position: center;
+    box-shadow: 16px 15px 30px #ccc;
+    -moz-border-radius: 20px;
+    -webkit-border-radius: 20px;
+    border-radius: 20%;
+}
+
+.entityItemIcon>img {
+    width: 50px;
+    height: 50px;
+    background-size: contain;
+    background-position: center;
+    box-shadow: 16px 15px 30px darkgray;
+    -moz-border-radius: 20px;
+    -webkit-border-radius: 20px;
+    border-radius: 20%;
+}
+
+.graphCanvas {
+    margin-left: 5%;
+    cursor: crosshair;
+    display: flex;
+    flex-direction: column;
+    width: 100%;
+    height: 70%;
+}
+
+.appViewMiddlebar {
+    display: flex;
+    border: 1px solid #333;
+    padding: 20px;
+    margin-right: 10%;
+    margin-top: 2%;
+    margin-bottom: 2%;
+    align-items: stretch;
+    background-color: lightgrey;
+    box-shadow: 15px 0 15px -2px lightgray;
+    border-radius: 25px;
+    overflow: hidden;
+}

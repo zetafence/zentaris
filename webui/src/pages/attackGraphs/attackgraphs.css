@@ -1,0 +1,328 @@
+.apps {
+    flex: 1;
+    margin-top: 1%;
+    padding-right: 1%;
+    overflow: hidden;
+}
+
+.apps::-webkit-scrollbar {
+    display: none;
+}
+
+.container {
+    display: grid;
+    width: 100%;
+    position: fixed;
+}
+
+.container>div {
+    padding: 0.5em;
+}
+
+.container {
+    display: grid;
+    width: 100%;
+    grid-template-columns: 380px 400px 1fr;
+    grid-auto-rows: minmax(100px, auto);
+}
+
+.appsTopBar {
+    display: flex;
+    margin-bottom: 2%;
+    align-items: normal;
+    justify-content: space-between;
+}
+
+.appsTitle {
+    display: flex;
+    font-weight: bold;
+    padding: 20px 25px;
+    font-size: 25px;
+    color: lightslategray;
+    margin-bottom: 10px;
+    margin-top: 1%;
+    margin-left: 1%;
+}
+
+.appsGroupsMenu {
+    display: flex;
+    justify-content: space-evenly;
+    margin-top: 1%;
+    margin-left: 10%;
+    padding-left: 400px;
+    margin-bottom: 10px;
+}
+
+.appActionsList {
+    align-items: center;
+    display: flex;
+}
+
+.newAppButton {
+    height: 50%;
+    margin-top: 15px;
+    margin-left: 8px;
+    margin-right: 10px;
+    margin-bottom: 30px;
+    display: flex;
+}
+
+.appViewCanvas {
+    width: 100%;
+    height: 100%;
+    display: block;
+    margin: 0 auto;
+    align-items: center;
+    overflow: hidden;
+}
+
+.appViewCanvas::-webkit-scrollbar {
+    display: none;
+}
+
+.MuiDataGrid-root .MuiDataGrid-cell:focus-within {
+    outline: none !important;
+}
+
+.MuiImageListItemBar-subtitle {
+    width: 150px;
+    overflow-wrap: anywhere !important;
+}
+
+.appsListEdit {
+    border: none;
+    border-radius: 25px;
+    width: 70px;
+    padding: 10px 15px;
+    background-color: lightskyblue;
+    box-shadow: 5px 0 15px -2px #8848;
+    color: white;
+    font-weight: bold;
+    margin-right: 20px;
+}
+
+.appsListNumber {
+    border: none;
+    border-radius: 20px;
+    width: 60px;
+    padding: 10px 15px;
+    background-color: lightslategray;
+    box-shadow: 5px 0 15px -2px #8848;
+    color: white;
+    font-weight: bold;
+    margin-left: 10%;
+    margin-right: 20px;
+}
+
+.appsDynamicNumber {
+    border: none;
+    border-radius: 20px;
+    width: 60px;
+    padding: 10px 15px;
+    background-color: lightsalmon;
+    box-shadow: 5px 0 15px -2px #8848;
+    color: white;
+    font-weight: bold;
+    margin-left: 10%;
+    margin-right: 20px;
+}
+
+.appsListWalk {
+    border: none;
+    border-radius: 25px;
+    width: 70px;
+    padding: 10px 15px;
+    background-color: rgb(15, 146, 140);
+    box-shadow: 5px 0 15px -2px #8848;
+    color: white;
+    font-weight: bold;
+    margin-right: 20px;
+}
+
+.appsListQuery {
+    border: none;
+    border-radius: 25px;
+    width: 70px;
+    padding: 10px 15px;
+    background-color: rgb(149, 93, 102);
+    box-shadow: 5px 0 15px -2px #8848;
+    color: white;
+    font-weight: bold;
+    margin-right: 20px;
+}
+
+.appsListDelete {
+    color: lightcoral;
+}
+
+.appItemImage {
+    width: 90px;
+    height: 110px;
+    object-fit: cover;
+    background-size: contain;
+    background-position: center;
+    background-repeat: no-repeat;
+    background-image: url('../../images/octohedron.jpg');
+    box-shadow: 12px 10px 10px #ccc;
+    -moz-border-radius: 20px;
+    -webkit-border-radius: 10px;
+    border-radius: 15%;
+}
+
+.appItemImage-visualize {
+    width: 90px;
+    height: 110px;
+    object-fit: cover;
+    background-size: contain;
+    background-position: center;
+    background-repeat: no-repeat;
+    background-image: url('../../images/logo.png');
+    box-shadow: 12px 10px 10px #ccc;
+    -moz-border-radius: 20px;
+    -webkit-border-radius: 10px;
+    border-radius: 15%;
+}
+
+.appItemImage-attackGraph {
+    width: 90px;
+    height: 110px;
+    object-fit: cover;
+    background-size: contain;
+    background-position: center;
+    background-repeat: no-repeat;
+    background-image: url('../../images/octohedron.jpg');
+    box-shadow: 12px 10px 10px #ccc;
+    -moz-border-radius: 20px;
+    -webkit-border-radius: 10px;
+    border-radius: 15%;
+}
+
+.appItemImage-accesscontrol {
+    width: 90px;
+    height: 110px;
+    object-fit: cover;
+    background-size: contain;
+    background-position: center;
+    background-repeat: no-repeat;
+    background-image: url('../../images/lock.png');
+    box-shadow: 12px 10px 10px #ccc;
+    -moz-border-radius: 20px;
+    -webkit-border-radius: 10px;
+    border-radius: 15%;
+}
+
+.appItemImage-k8sgraph {
+    width: 90px;
+    height: 110px;
+    object-fit: cover;
+    background-size: contain;
+    background-position: center;
+    background-repeat: no-repeat;
+    background-image: url('../../images/k8s.png');
+    box-shadow: 12px 10px 10px #ccc;
+    -moz-border-radius: 20px;
+    -webkit-border-radius: 10px;
+    border-radius: 15%;
+}
+
+.appItemImage-groupjwt {
+    width: 90px;
+    height: 110px;
+    object-fit: cover;
+    background-size: contain;
+    background-position: center;
+    background-repeat: no-repeat;
+    background-image: url('../../images/jwt.png');
+    box-shadow: 12px 10px 10px #ccc;
+    -moz-border-radius: 20px;
+    -webkit-border-radius: 10px;
+    border-radius: 15%;
+}
+
+.appItemImage-workflow {
+    width: 90px;
+    height: 110px;
+    object-fit: cover;
+    background-size: contain;
+    background-position: center;
+    background-repeat: no-repeat;
+    background-image: url('../../images/workflow.png');
+    box-shadow: 12px 10px 10px #ccc;
+    -moz-border-radius: 20px;
+    -webkit-border-radius: 10px;
+    border-radius: 15%;
+}
+
+.appItemImage-secret {
+    width: 90px;
+    height: 110px;
+    object-fit: cover;
+    background-size: contain;
+    background-position: center;
+    background-repeat: no-repeat;
+    background-image: url('../../images/secret.png');
+    box-shadow: 12px 10px 10px #ccc;
+    -moz-border-radius: 20px;
+    -webkit-border-radius: 10px;
+    border-radius: 15%;
+}
+
+.appItemImage-yucca {
+    width: 90px;
+    height: 110px;
+    object-fit: cover;
+    background-size: contain;
+    background-position: center;
+    background-repeat: no-repeat;
+    background-image: url('../../images/yucca.png');
+    box-shadow: 12px 10px 10px #ccc;
+    -moz-border-radius: 20px;
+    -webkit-border-radius: 10px;
+    border-radius: 15%;
+}
+
+.appItemImage-aws {
+    width: 90px;
+    height: 110px;
+    object-fit: cover;
+    background-size: contain;
+    background-position: center;
+    background-repeat: no-repeat;
+    background-image: url('../../images/aws.png');
+    box-shadow: 12px 10px 10px #ccc;
+    -moz-border-radius: 20px;
+    -webkit-border-radius: 10px;
+    border-radius: 15%;
+}
+
+.appItemImage:hover {
+    opacity: 0.3;
+    filter: alpha(opacity=20);
+    /* For IE8 and earlier */
+}
+
+.appMenuEditImg {
+    width: 10px;
+    height: 20px;
+    padding-right: 20px;
+    object-fit: cover;
+    background-size: contain;
+    background-position: left;
+    background-repeat: no-repeat;
+    background-image: url('../../images/edit-icon.png');
+}
+
+.appMenuDeleteImg {
+    width: 15px;
+    height: 20px;
+    padding-right: 20px;
+    object-fit: cover;
+    background-size: contain;
+    background-position: left;
+    background-repeat: no-repeat;
+    background-image: url('../../images/delete-icon.png');
+}
+
+.MuiImageListItemBar-subtitle {
+    width: 300px;
+}

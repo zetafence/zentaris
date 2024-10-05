@@ -1,0 +1,8 @@
+.error {
+    position: fixed;
+    height: 100%;
+    width: 100%;
+    background-image: url('../../images/blur.jpg');
+    z-index: 999;
+    overflow: hidden;
+}

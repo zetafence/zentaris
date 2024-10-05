@@ -1,0 +1,39 @@
+version: '3.3'
+
+services:
+  apiserver:
+    image: docker.io/zentaris/apiserver:v1.0.0
+    container_name: apiserver
+    volumes:
+      - certs/zf.crt:/etc/server.crt
+      - certs/zf.key:/etc/server.key
+    ports:
+      - 8443:8443
+    networks:
+      - knetwork
+    restart: unless-stopped
+
+  uiserver:
+    image: docker.io/zentaris/uiserver:v1.0.0
+    stdin_open: true
+    container_name: 'uiserver'
+    volumes:
+      - certs/zf.crt:/etc/server.crt
+      - certs/zf.key:/etc/server.key
+    environment:
+        - NODE_ENV=production
+        - REACT_APP_SERVER=localhost:8443
+        - HTTPS=true
+        - PORT=3000
+        - SSL_CRT_FILE=/etc/server.crt
+        - SSL_KEY_FILE=/etc/server.key
+    command: ["yarn", "start", "--verbose"]
+    ports:
+      - 3000:3000
+    networks:
+      - knetwork
+    restart: unless-stopped
+
+networks:
+  knetwork:
+    driver: bridge

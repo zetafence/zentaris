@@ -1,0 +1,27 @@
+html {
+    overflow: auto;
+}
+
+body {
+    overflow: auto;
+}
+
+.dashboard {
+    flex: 4;
+    display: block;
+    background-color: whitesmoke;
+    overflow: auto;
+}
+
+.dashboardWidget {
+    display: flex;
+    justify-content: space-around;
+    margin: 5% auto;
+}
+
+.dashboardWidget2 {
+    height: 80%;
+    display: block;
+    align-items: center;
+    margin: 5% 5%;
+}

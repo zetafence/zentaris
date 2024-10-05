@@ -1,0 +1,276 @@
+.graph {
+  flex: 1;
+  height: calc(100vh - 50px);
+  background-color: rgba(211, 211, 211, 0.271);
+  position: sticky !important;
+  top: 50px;
+  overflow: auto;
+}
+
+.apps {
+  flex: 4;
+  margin-top: 20px;
+  padding-right: 10px;
+  overflow: hidden;
+}
+
+svg:not(.active):not(.ctrl) {
+  cursor: crosshair;
+}
+
+path.link {
+  fill: none;
+  stroke: #000;
+  stroke-width: 4px;
+  cursor: default;
+}
+
+svg:not(.active):not(.ctrl) path.link {
+  cursor: pointer;
+}
+
+svg:focus {
+  outline: none;
+}
+
+path.link.selected {
+  stroke-dasharray: 10, 2;
+}
+
+path.link.dragline {
+  pointer-events: none;
+}
+
+path.link.hidden {
+  stroke-width: 0;
+}
+
+.gBrush {
+  fill: lightgray;
+  fill-opacity: .15;
+  shape-rendering: crispEdges;
+}
+
+.gBrush .extent {
+  stroke: rgb(190, 181, 181);
+  fill-opacity: .525;
+  shape-rendering: crispEdges;
+}
+
+circle.node {
+  stroke-width: 1.5px;
+  cursor: pointer;
+}
+
+circle.node.reflexive {
+  stroke: #000 !important;
+  stroke-width: 2.5px;
+}
+
+text {
+  font: 12px sans-serif;
+  pointer-events: none;
+}
+
+text.id {
+  text-anchor: middle;
+  font-weight: bold;
+}
+
+.link {
+  fill: none;
+  stroke: #666;
+  stroke-width: 1.5px;
+}
+
+#licensing {
+  fill: green;
+}
+
+.link.licensing {
+  stroke: green;
+}
+
+.link.resolved {
+  stroke-dasharray: 0, 2 1;
+}
+
+circle {
+  fill: #ccc;
+  stroke: #333;
+  stroke-width: 1.5px;
+}
+
+text {
+  font: 15px sans-serif;
+  pointer-events: none;
+  text-shadow: 0 1px 0 #fff, 1px 0 0 #fff, 0 -1px 0 #fff, -1px 0 0 #fff;
+}
+
+/*
+ * CSS definitions for Custom Node type
+ */
+
+.name {
+  color: black;
+}
+
+.custom-container {
+  flex-direction: column;
+  display: flex;
+  justify-content: center;
+}
+
+.custom-container-column {
+  flex-direction: column;
+}
+
+.custom-container-row {
+  flex-direction: row;
+}
+
+.custom-fill-space {
+  flex-grow: 1;
+}
+
+.customIcon {
+  width: 100%;
+  height: 100%;
+  background-size: contain;
+  background-position: center;
+  background-repeat: no-repeat;
+  background-image: url('./images/app-icon.png');
+}
+
+.customIconMale {
+  width: 100%;
+  height: 100%;
+  background-size: contain;
+  background-position: center;
+  background-repeat: no-repeat;
+  background-image: url('./images/man.svg');
+}
+
+.customIconFemale {
+  width: 100%;
+  height: 100%;
+  background-size: contain;
+  background-position: center;
+  background-repeat: no-repeat;
+  background-image: url('./images/girl.svg');
+}
+
+.customIconCar {
+  width: 100%;
+  height: 100%;
+  background-size: contain;
+  background-position: center;
+  background-repeat: no-repeat;
+  background-image: url('./images/car.svg');
+}
+
+.customIconRest {
+  width: 100%;
+  height: 100%;
+  background-size: contain;
+  background-position: center;
+  background-repeat: no-repeat;
+  background-image: url('./images/rest.png');
+}
+
+.customIconDiamond {
+  width: 100%;
+  height: 100%;
+  background-size: contain;
+  background-position: center;
+  background-repeat: no-repeat;
+  background-image: url('./images/diamond.png');
+}
+
+.customIconKeypad {
+  width: 100%;
+  height: 100%;
+  background-size: contain;
+  background-position: center;
+  background-repeat: no-repeat;
+  background-image: url('./images/keypad.png');
+}
+
+/* --- Shape for the nodes --- */
+
+.person-node {
+  width: 100%;
+  height: 100%;
+  background-color: lightskyblue;
+  border-radius: 18px;
+  box-shadow: 25px 5 35px 5px darkslategray;
+  color: darkslategrey;
+}
+
+.person-node.highlight {
+  width: 100%;
+  height: 100%;
+  background-color: orange;
+  box-shadow: 25px 5 35px 5px darkslategray;
+  border-radius: 18px;
+}
+
+.person-node.male {
+  width: 100%;
+  height: 100%;
+  background-color: lightblue;
+  box-shadow: 25px 15px cadetblue;
+  border-radius: 9px;
+}
+
+.person-node.male.highlight {
+  width: 100%;
+  height: 100%;
+  background-color: orange;
+  box-shadow: 35px 25px cadetblue;
+  border-radius: 9px;
+}
+
+.person-node.female {
+  width: 100%;
+  height: 100%;
+  background-color: pink;
+  box-shadow: 25px 15px palevioletred;
+  border-radius: 9px;
+}
+
+.person-node.female.highlight {
+  width: 100%;
+  height: 100%;
+  background-color: orange;
+  box-shadow: 35px 25px palevioletred;
+  border-radius: 9px;
+}
+
+/* --- Other styles for node content --- */
+
+.person-node .name {
+  padding: 5%;
+  font-size: 0.75em;
+  font-weight: bold;
+  text-align: justify;
+  text-transform: capitalize;
+}
+
+.person-node .icon-bar {
+  width: 20%;
+  margin-right: 5%;
+}
+
+.person-node .icon-bar>.icon {
+  width: 80%;
+  height: 30%;
+}
+
+/* you need to toggle `node.renderLabel` to see this class in action */
+.person-node-label {
+  fill: black;
+  text-shadow: rgb(255, 255, 255) 0px -2px 0px, rgb(255, 255, 255) 0px 2px 0px, rgb(255, 255, 255) 2px 0px 0px,
+    rgb(255, 255, 255) -2px 0px 0px;
+  transform: rotate(-25deg) translateX(40px) translateY(15px);
+}
