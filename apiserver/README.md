@@ -1,5 +1,5 @@
 <h1 align="center">
-    <img align="left" width="100" height="100" src="https://zetafence.com/logo.png" alt="Zetafence"/>
+    <img align="left" width="100" height="100" src="../images/zentaris.png" alt="Zentaris"/>
     <br />
     <p style="color: #808080; text-shadow: 1px 1px 2px rgba(0, 0, 0, 0.5);">
     Zentaris API Server

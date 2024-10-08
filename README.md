@@ -124,7 +124,6 @@ Open Zentaris dashboard by pointing browser at [https://localhost:3000)](https:/
 
 See [Zentaris API Server](apiserver/README.md) for details.
 
-<p/>
 <br/>OSS sponsored with ![Red Heart](https://img.shields.io/badge/-❤-ff0000?style=for-the-badge) by
     <a href="https://zetafence.com">
     <img align="center" width="85" src="https://img.shields.io/badge/Zetafence-8A2BE2" alt="Zetafence"/></a>
