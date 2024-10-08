@@ -14,7 +14,7 @@ Zentaris is a Cloud-Agnostic Attack Path Risk Categorization tool that maps clou
 
 ## Architecture
 
-Zentaris platform comes with a backend API server, an in-memory DB, and a React application all included in the deployment package.
+Zentaris platform comes with a backend API server, an in-memory DB, and a React UX application all included as part of the deployment package.
 
 ## Screenshots
 
@@ -25,13 +25,15 @@ Zentaris platform comes with a backend API server, an in-memory DB, and a React 
 
 Hypergraphs are a set of entities (aka vertices), and a set of Hyperedges much like in a regular graph. The difference is that entities can form a set of entities of their own, and Hyperedges connect more than two vertices, leading to a set.
 
-Hypergraphs enable complex operations on edge associations via traditional set theoretic methods. In the above example, I would have to simply take an union of `{r, w}` and `{s, x}` to obtain the largest number of permissions allowed from user2. Such queries are not possible in a regular graph. To achieve equivalent results, ABAC creates containers, that are essentially groups of users, objects, policies, etc.
+In Hypergraphs, we simply define an indexed Hyperedge Administrator whose vertices are user vertices Alice, and Bob. Not only are queries easier and obtain more sophisticated information, it reduces graph traversal, but even more important is that it reduces graph maintenance of nodes and adjacencies as well, which play a critical part in computational complexity.
+
+Hypergraphs enable complex operations on edge associations via traditional set theoretic methods. In the above example, we would have to take an union of `{r, w}` and `{s, x}` to obtain the largest permissions allowed from an Administrator. Such queries are not possible in a regular graph. To achieve equivalent results, ABAC creates containers, that are essentially groups of users, objects, policies, etc.
 
 Because Hypergraphs and Hyperedges work more like a set, rather than 1-1 association, any changes, updates, or crucial modifications to Hypergraph applications require operations that result in far lesser locking semantics, lesser graph traversal, thus minimizing disruptions to running of graph applications.
 
-## Attack Scenarios Playbooks
+## Attack Scenario Playbooks
 
-Zentaris security scanning engines build attack scenario playbooks that can then be represented in graphs or could be downloaded to JSON for automation. Following are some example scenarios that the engines detected.
+Zentaris security scanning engines primarily build attack scenarios that can then be represented as attack graphs. Scanning engines traverses graph entities looking for attributes that demonstrate weakness. Following are some scenarios that the engines detects.
 
 * Brute Force Access and Exploitation of Misconfigurations for Data Exfiltration and Resource Abuse. The attacker targets the AWS account login interface, attempting a brute force password attack against an account that has weak credentials. The attacker leverages their access to the EC2 instance, either by further brute-forcing SSH credentials or exploiting a misconfiguration in the instance that allows them to obtain the credentials stored within the instance. The attacker uses the compromised credentials from the EC2 instance to explore AWS IAM roles and policies attached to the instance. The attacker exfiltrates sensitive data from the S3 bucket, using the compromised EC2 instance to download the files and transfer them to an external server under the attacker’s control.
 
