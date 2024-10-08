@@ -1,0 +1,9 @@
+# AWS credentials
+AWS_ACCESS_KEY_ID=BJIAWRUWRDZS9BNDL33T
+AWS_SECRET_ACCESS_KEY=SjBMei+hiAOF/JWCFj1MdhGrYkWxFOIT+cX/WWFK
+AWS_REGION=us-east-2
+
+# zetafence credentials
+ZETAFENCE_TOKEN=k9MpyVixTTbXKmQjcStXRXr7I9pqI0wGOy96TgeEvgPoaQ4aajqcELjCshwzzFHQ
+ZETAFENCE_PROFILE=awsBehavioralSecurity1a
+ZETAFENCE_ORG=user@example.com

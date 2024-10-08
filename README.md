@@ -33,11 +33,11 @@ Because Hypergraphs and Hyperedges work more like a set, rather than 1-1 associa
 
 Zentaris security scanning engines build attack scenario playbooks that can then be represented in graphs or could be downloaded to JSON for automation. Following are some example scenarios that the engines detected.
 
-- Brute Force Access and Exploitation of Misconfigurations for Data Exfiltration and Resource Abuse. The attacker targets the AWS account login interface, attempting a brute force password attack against an account that has weak credentials. The attacker leverages their access to the EC2 instance, either by further brute-forcing SSH credentials or exploiting a misconfiguration in the instance that allows them to obtain the credentials stored within the instance. The attacker uses the compromised credentials from the EC2 instance to explore AWS IAM roles and policies attached to the instance. The attacker exfiltrates sensitive data from the S3 bucket, using the compromised EC2 instance to download the files and transfer them to an external server under the attacker’s control.
+* Brute Force Access and Exploitation of Misconfigurations for Data Exfiltration and Resource Abuse. The attacker targets the AWS account login interface, attempting a brute force password attack against an account that has weak credentials. The attacker leverages their access to the EC2 instance, either by further brute-forcing SSH credentials or exploiting a misconfiguration in the instance that allows them to obtain the credentials stored within the instance. The attacker uses the compromised credentials from the EC2 instance to explore AWS IAM roles and policies attached to the instance. The attacker exfiltrates sensitive data from the S3 bucket, using the compromised EC2 instance to download the files and transfer them to an external server under the attacker’s control.
 
-- Initial Access via Remote Desktop Protocol (RDP). An attacker exploits weak RDP credentials to gain initial access to a corporate system. After gaining access, the attacker performs reconnaissance to identify available resources and users within the network. The attacker uses tools to dump credentials stored in memory and on disk. With the dumped credentials, the attacker moves laterally to other systems within the network. The attacker identifies sensitive documents and exfiltrates them to an external server. 
+* Initial Access via Remote Desktop Protocol (RDP). An attacker exploits weak RDP credentials to gain initial access to a corporate system. After gaining access, the attacker performs reconnaissance to identify available resources and users within the network. The attacker uses tools to dump credentials stored in memory and on disk. With the dumped credentials, the attacker moves laterally to other systems within the network. The attacker identifies sensitive documents and exfiltrates them to an external server. 
  
-- Initial Access via SQL Injection. An attacker discovers a vulnerable web application and uses SQL injection to access the backend database. The attacker manipulates data within the database to cover their tracks or create new user accounts with elevated privileges. The attacker exploits the web shell to escalate privileges and gain access to sensitive areas of the system. The attacker identifies sensitive data, such as customer information, and exfiltrates it to an external server.
+* Initial Access via SQL Injection. An attacker discovers a vulnerable web application and uses SQL injection to access the backend database. The attacker manipulates data within the database to cover their tracks or create new user accounts with elevated privileges. The attacker exploits the web shell to escalate privileges and gain access to sensitive areas of the system. The attacker identifies sensitive data, such as customer information, and exfiltrates it to an external server.
 
 ## Discovery
 
@@ -89,8 +89,42 @@ Infra pentesting environments like CloudGoat to test vulnerable AWS scenarios. P
 
 ## Zentaris Deployment
 
-See [Deploy](deploy/README.md)
+See [Zentaris Deploy](deploy/README.md) for details.
 
+## Getting Started
+
+Once deployed, following steps must be followed.
+
+### Discovery
+
+First, verify if credentials are correctly setup for discovery process.
+
+```
+$ cd discovery
+$ cat credentials.sh
+$ source ./credentials.sh
+```
+
+Second, trigger the discovery process using Zetafence discovery engine. Note that this discovery process relies on Zetafence backend to build graph infrastructure using APIs, which requires a platform API key.
+
+```
+$ ./discovery.sh
+```
+
+### Backend API Server and UI Server
+
+```
+$ cd deploy
+$ docker-compose up -d
+```
+
+Open Zentaris dashboard by pointing browser at [https://localhost:3000)](https://localhost:3000)
+
+## Zentaris API Server
+
+See [Zentaris API Server](apiserver/README.md) for details.
+
+<p/>
 <br/>OSS sponsored with ![Red Heart](https://img.shields.io/badge/-❤-ff0000?style=for-the-badge) by
     <a href="https://zetafence.com">
     <img align="center" width="85" src="https://img.shields.io/badge/Zetafence-8A2BE2" alt="Zetafence"/></a>

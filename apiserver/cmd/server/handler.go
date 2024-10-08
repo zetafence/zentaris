@@ -82,7 +82,8 @@ func registerHandlers() *mux.Router {
 func HandlerMain() {
 	r := registerHandlers()
 
-	// Start server
-	fmt.Println("Server is running on port 8443")
-	log.Fatal(http.ListenAndServeTLS(":8443", "server.crt", "server.key", r))
+	// start TLS REST service
+	fmt.Printf("starting HTTPS service on :%v\n", serverCfg.httpsPort)
+	log.Fatal(http.ListenAndServeTLS(fmt.Sprintf(":%d", serverCfg.httpsPort),
+		serverCfg.cert, serverCfg.key, r))
 }

@@ -14,7 +14,7 @@ type ServerConfig struct {
 }
 
 const (
-	DEFAULT_HTTPS_PORT    = 7778
+	DEFAULT_HTTPS_PORT    = 8443
 	DEFAULT_TLS_CERT_PATH = "/etc/certs/server.crt"
 	DEFAULT_TLS_KEY_PATH  = "/etc/certs/server.key"
 	DEFAULT_AUTH_HEADER   = "Authorization"

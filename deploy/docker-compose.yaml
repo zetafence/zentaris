@@ -1,37 +1,40 @@
 version: '3.3'
 
 services:
-  apiserver:
+  zentaris_apiserver:
     image: docker.io/zentaris/apiserver:v1.0.0
-    container_name: apiserver
+    container_name: zentaris_apiserver
     volumes:
-      - certs/zf.crt:/etc/server.crt
-      - certs/zf.key:/etc/server.key
+      - ./certs/server.crt:/etc/certs/server.crt
+      - ./certs/server.key:/etc/certs/server.key
+    command: -httpsPort 9443 -cert /etc/certs/server.crt -key /etc/certs/server.key
     ports:
-      - 8443:8443
+      - 9443:9443
     networks:
       - knetwork
     restart: unless-stopped
 
-  uiserver:
+  zentaris_uiserver:
     image: docker.io/zentaris/uiserver:v1.0.0
     stdin_open: true
-    container_name: 'uiserver'
+    container_name: zentaris_uiserver
     volumes:
-      - certs/zf.crt:/etc/server.crt
-      - certs/zf.key:/etc/server.key
+      - ./certs/server.crt:/etc/certs/server.crt
+      - ./certs/server.key:/etc/certs/server.key
     environment:
         - NODE_ENV=production
-        - REACT_APP_SERVER=localhost:8443
+        - REACT_APP_SERVER=zentaris_apiserver:9443
         - HTTPS=true
         - PORT=3000
-        - SSL_CRT_FILE=/etc/server.crt
-        - SSL_KEY_FILE=/etc/server.key
+        - SSL_CRT_FILE=/etc/certs/server.crt
+        - SSL_KEY_FILE=/etc/certs/server.key
     command: ["yarn", "start", "--verbose"]
     ports:
       - 3000:3000
     networks:
       - knetwork
+    depends_on:
+      - zentaris_apiserver
     restart: unless-stopped
 
 networks:
