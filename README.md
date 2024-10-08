@@ -113,7 +113,7 @@ Second, trigger the discovery process using Zetafence discovery engine. Note tha
 $ ./discovery.sh
 ```
 
-### Backend API Server and UI Server
+### Deploying Backend API Server and UI Server
 
 ```
 $ cd deploy
@@ -125,6 +125,10 @@ Open Zentaris dashboard by pointing browser at [https://localhost:3000](https://
 ## Zentaris API Server
 
 See [Zentaris API Server](apiserver/README.md) for details.
+
+## Zentaris UI Server
+
+See [Zentaris UI Server](webui/README.md) for details.
 
 <br/>OSS sponsored with ![Red Heart](https://img.shields.io/badge/-❤-ff0000?style=for-the-badge) by
     <a href="https://zetafence.com">

@@ -18,7 +18,7 @@ To start UI service on default port 3000 using HTTPS, use the following commands
 
 ```
 $ yarn install
-$ HTTPS=true REACT_APP_SERVER=localhost:7778 yarn start
+$ HTTPS=true REACT_APP_SERVER=localhost:8443 yarn start
 ```
 
 To start UI server on a another port, simply set `PORT` as below:
