@@ -118,7 +118,7 @@ $ cd deploy
 $ docker-compose up -d
 ```
 
-Open Zentaris dashboard by pointing browser at [https://localhost:3000)](https://localhost:3000)
+Open Zentaris dashboard by pointing browser at [https://localhost:3000](https://localhost:3000)
 
 ## Zentaris API Server
 
