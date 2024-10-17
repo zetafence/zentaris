@@ -1,4 +1,4 @@
-module github.com/zetafence/zentaris
+module github.com/zetafence/zentaris/apiserver
 
 go 1.20
 

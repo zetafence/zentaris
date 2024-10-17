@@ -2,15 +2,16 @@ package main
 
 import (
 	"flag"
+	"fmt"
+	"log"
+	"net/http"
+
+	"github.com/zetafence/zentaris/apiserver/internal/server/handler"
 )
 
 type ServerConfig struct {
-	org                 string // org key
 	httpsPort, grpcPort int    // HTTPS, gRPC ports
 	cert, key           string // TLS server cert and keys
-	dbHost              string // DB host
-	dbPort              int    // DB port
-	dbName              string // DB name
 }
 
 const (
@@ -31,6 +32,16 @@ func parseCmdLine() {
 	flag.StringVar(&serverCfg.cert, "cert", DEFAULT_TLS_CERT_PATH, "TLS Server Certificate")
 	flag.StringVar(&serverCfg.key, "key", DEFAULT_TLS_KEY_PATH, "TLS Key")
 	flag.Parse()
+}
+
+// HandlerMain registers REST handlers
+func HandlerMain() {
+	r := handler.RegisterHandlers()
+
+	// start TLS REST service
+	fmt.Printf("starting HTTPS service on :%v\n", serverCfg.httpsPort)
+	log.Fatal(http.ListenAndServeTLS(fmt.Sprintf(":%d", serverCfg.httpsPort),
+		serverCfg.cert, serverCfg.key, r))
 }
 
 // main

@@ -1,6 +1,15 @@
-package main
+package graph
 
-// Data structure for JSON
+import (
+	"github.com/zetafence/zentaris/apiserver/internal/server/db"
+)
+
+// Graph defines database of vertices and edges, and corresponding operations
+type Graph struct {
+	db db.Db
+}
+
+// AppData represent a graph application
 type AppData struct {
 	ID               string                 `json:"id"`
 	Name             string                 `json:"name"`
@@ -15,6 +24,7 @@ type AppData struct {
 	LastModifiedUser string                 `json:"lastModifiedUser"`
 }
 
+// TBD
 type Stats struct {
 	NumRuns    int   `json:"numruns"`
 	NumQueries int   `json:"numqueries"`
@@ -22,12 +32,12 @@ type Stats struct {
 	RunTS      []int `json:"runts"`
 }
 
-// list of apps
+// list of graph applications
 type AppsList struct {
 	Apps []AppData `json:"apps"`
 }
 
-// graph entities
+// Entity represents graph vertices
 type Entity struct {
 	ID               string            `json:"id"`
 	Name             string            `json:"name"`
@@ -37,7 +47,7 @@ type Entity struct {
 	Entities         []Entity          `json:"entities"`
 	Fitness          int               `json:"fitness"`
 	Actions          Action            `json:"actions"`
-	Stats            interface{}       `json:"stats"` // Assuming stats can be of various types, use `interface{}` or define a specific type
+	Stats            interface{}       `json:"stats"`
 	Created          string            `json:"created"`
 	LastModified     string            `json:"lastModified"`
 	LastModifiedUser string            `json:"lastModifiedUser"`
@@ -46,16 +56,17 @@ type Entity struct {
 type Action struct {
 	ID         string   `json:"id"`
 	Name       string   `json:"name"`
-	Actions    []string `json:"actions"`    // Assuming actions is a list of strings
-	Operations []string `json:"operations"` // Assuming operations is a list of strings
-	RunStats   []string `json:"runStats"`   // Assuming runStats is a list of strings
+	Actions    []string `json:"actions"`    // actions is a list of strings
+	Operations []string `json:"operations"` // operations is a list of strings
+	RunStats   []string `json:"runStats"`   // runStats is a list of strings
 }
 
+// list of graph entities
 type EntityList struct {
 	Entities []Entity `json:"entities"`
 }
 
-// graph associations
+// Assoc represents graph edges or associations
 type Assoc struct {
 	ID               string                 `json:"id"`
 	Name             string                 `json:"name"`
@@ -66,12 +77,13 @@ type Assoc struct {
 	OtherEntities    []string               `json:"otherentities"`
 	Attributes       map[string]interface{} `json:"attributes"`
 	Propensity       int                    `json:"propensity"`
-	Expressions      interface{}            `json:"expressions"` // Assuming expressions can be of various types, using interface{} for flexibility
+	Expressions      interface{}            `json:"expressions"`
 	Created          string                 `json:"created"`
 	LastModified     string                 `json:"lastModified"`
 	LastModifiedUser string                 `json:"lastModifiedUser"`
 }
 
+// list of graph edges
 type AssocList struct {
 	Assocs []Assoc `json:"assocs"`
 }
