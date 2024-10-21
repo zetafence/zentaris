@@ -57,9 +57,25 @@ const MenuProps = {
 // CustomNode with id and type
 // inputs: id, type, source, target
 function CustomNode({ id, data }) {
-    const kind = data.kind;
     const isSource = data.isSource;
     const isTarget = data.isTarget;
+
+    const lightColors = [
+        '#FFCCCB', // Light Red
+        '#FFFFE0', // Light Yellow
+        '#E0FFFF', // Light Cyan
+        '#F0E68C', // Khaki
+        '#D3D3D3', // Light Gray
+        '#ADD8E6', // Light Blue
+        '#90EE90', // Light Green
+    ];
+    const getRandomNodeColor = (count) => {
+        const shuffledColors = [...lightColors].sort(() => 0.5 - Math.random());
+        if (!count) {
+            return shuffledColors[0];
+        }
+        return shuffledColors.slice(0, count);
+    };
 
     function getSource() {
         if (isSource === true) {
@@ -92,9 +108,13 @@ function CustomNode({ id, data }) {
     return (
         <>
             <div className="custom-node">
-                <div style={{ fontSize: '6px', fontFamily: 'Arial, sans-serif', fontWeight: 'normal' }}>
-                    <label>{id}</label>
-                    <img alt="" class={"custom-node-icon " + kind} />
+                <div style={{
+                    fontSize: '16px',
+                    fontFamily: 'Arial, sans-serif',
+                    fontWeight: 'normal',
+                    background: getRandomNodeColor()
+                }}>
+                    <label style={{ fontSize: '10px' }}>{id}</label>
                 </div>
             </div>
             {getSource()}

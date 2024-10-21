@@ -213,7 +213,7 @@ export default class AppViewBase extends Component {
 
     // fetchAppEntities fetches entities corresponding to appId
     fetchAppEntities(appId) {
-		return
+        return
     }
 
     // open app walk dialog modal
@@ -919,7 +919,6 @@ export default class AppViewBase extends Component {
                 >
                     <DialogTitle>Expose API - {this.state.appId}</DialogTitle>
                     <DialogContent>
-
                         <TextField
                             id="exposeApiId"
                             label="API Id"
