@@ -12,6 +12,10 @@ import (
 	"github.com/zetafence/zentaris/apiserver/internal/server/graph"
 )
 
+const (
+	NONE_STR = ""
+)
+
 // NewScenario returns a new graph element
 func NewScenario(db db.Db) *Scenario {
 	return &Scenario{
@@ -57,11 +61,11 @@ func (s *Scenario) createAttackGraphEntity(aid, eid string, attributes map[strin
 	return eid
 }
 
-// createUserAttackEntities creates user attack entities
-func (s *Scenario) createUserAttackEntities(aid string, entity graph.Entity) error {
+// createUserBruteForce creates user brute force attack entities
+func (s *Scenario) createUserBruteForce(aid string, entity graph.Entity) error {
 	attrs := map[string]string{
-		"UserType": entity.Kind,
-		"App":      aid,
+		"UserBruteForceType": entity.Kind,
+		"App":                aid,
 	}
 	if _, ok := entity.Attributes["MFAEnabledTime"]; !ok {
 		attrs["MFAEnabled"] = "false"
@@ -90,48 +94,74 @@ func (s *Scenario) createUserAttackEntities(aid string, entity graph.Entity) err
 	return nil
 }
 
-// createPolicyAttackEntities creates user attack entities
-func (s *Scenario) createPolicyAttackEntities(aid string, entity graph.Entity) error {
+// createPolicyCompromise creates policy compromise attack scenarios
+func (s *Scenario) createPolicyCompromise(aid string, entity graph.Entity) error {
 	attrs := map[string]string{
-		"PolicyType": entity.Kind,
-		"App":        aid,
+		"PolicyCompromiseType": entity.Kind,
+		"App":                  aid,
 	}
 	if c, ok := entity.Attributes["PermissionsBoundaryUsageCount"]; ok && c == "0" {
 		attrs["PermissionsBoundaryUsageCount"] = "none"
-		s.createAttackGraphEntity(aid, "Credential Access: Credentials in Files due to PermissionsBoundaryUsageCount", attrs)
+		attrs["Risk"] = "high"
+		s.createAttackGraphEntity(aid, "Credential Compromise and Lateral Movement due to PermissionsBoundaryUsageCount", attrs)
 	}
 	return nil
 }
 
-// createExfiltrationAttackEntities creates user attack entities
-func (s *Scenario) createExfiltrationAttackEntities(aid string, entity graph.Entity) error {
+// createUnauthorizedAccess( creates attack entities for unauthorized access
+func (s *Scenario) createUnauthorizedAccess(aid string, entity graph.Entity) error {
 	attrs := map[string]string{
-		"ExfiltrationType": entity.Kind,
-		"App":              aid,
+		"UnauthorizedAccessType": entity.Kind,
+		"App":                    aid,
+	}
+	c, ok := entity.Attributes["PermissionsBoundary"]
+	if !ok || c == NONE_STR {
+		attrs["PermissionsBoundary"] = c
+		attrs["Risk"] = "critical"
+		s.createAttackGraphEntity(aid, "Credential Compromise and Lateral Movement due to PermissionsBoundary being not set", attrs)
+	}
+	c, ok = entity.Attributes["MaxSessionDuration"]
+	if !ok || c == NONE_STR {
+		attrs["MaxSessionDuration"] = c
+		attrs["Risk"] = "high"
+		s.createAttackGraphEntity(aid, "Credential Compromise and Lateral Movement due to MaxSessionDuration is not set", attrs)
+	}
+	return nil
+}
+
+// createPubliclyAccessibleResources creates attack entities for public accessible
+func (s *Scenario) createPubliclyAccessibleResources(aid string, entity graph.Entity) error {
+	attrs := map[string]string{
+		"PubliclyAccessibleType": entity.Kind,
+		"App":                    aid,
 	}
 	if c, ok := entity.Attributes["OpenPorts"]; ok && strings.Contains(c, "0.0.0.0") {
 		attrs["OpenPorts"] = c
+		attrs["Risk"] = "high"
 		s.createAttackGraphEntity(aid, "Initial Access with External Remote Services", attrs)
 	}
 	if c, ok := entity.Attributes["PublicIpAddress"]; ok {
 		attrs["PublicIpAddress"] = c
+		attrs["Risk"] = "medium"
 		s.createAttackGraphEntity(aid, "Remote System Discovery network scanning or querying public IP Address", attrs)
 	}
 	if c, ok := entity.Attributes["PublicDnsName"]; ok {
 		attrs["PublicIpAddress"] = c
+		attrs["Risk"] = "medium"
 		s.createAttackGraphEntity(aid, "Remote System Discovery network scanning or querying public DNS records", attrs)
 	}
 	return nil
 }
 
-// createPermissiveAttackEntities creates user attack entities
-func (s *Scenario) createPermissiveAttackEntities(aid string, entity graph.Entity) error {
+// createExfiltration creates attack entities for data exfiltration
+func (s *Scenario) createExfiltration(aid string, entity graph.Entity) error {
 	attrs := map[string]string{
-		"PermissiveType": entity.Kind,
-		"App":            aid,
+		"ExFiltrationType": entity.Kind,
+		"App":              aid,
 	}
 	if c, ok := entity.Attributes["OverlyPermissive"]; ok && c == "0" {
 		attrs["OverlyPermissive"] = "none"
+		attrs["Risk"] = "critical"
 		s.createAttackGraphEntity(aid, "Privilege Escalation Exfiltration of Exposed Sensitive Information", attrs)
 	}
 	return nil
@@ -152,28 +182,35 @@ func (s *Scenario) createAttackScenarios(app graph.AppData) error {
 		if !ok {
 			continue
 		}
+
+		// filter out entities other than this app
 		if !strings.HasPrefix(e.ID, app.ID) {
 			continue
 		}
 
-		// user scenarios
+		// brute force scenarios
 		if strings.Contains(e.Kind, "user") {
-			s.createUserAttackEntities(appId, e)
+			s.createUserBruteForce(appId, e)
 		}
 
-		// policy scenarios
+		// policy compromise scenarios
 		if strings.Contains(e.Kind, "policy") {
-			s.createPolicyAttackEntities(appId, e)
+			s.createPolicyCompromise(appId, e)
 		}
 
-		// instance vuln scenarios
+		// unauthorized access scenarios
+		if strings.Contains(e.Kind, "role") {
+			s.createUnauthorizedAccess(appId, e)
+		}
+
+		// publicly accessible resources
 		if strings.Contains(e.Kind, "instance") {
-			s.createExfiltrationAttackEntities(appId, e)
+			s.createPubliclyAccessibleResources(appId, e)
 		}
 
 		// s3 scenarios
 		if strings.Contains(e.Kind, "s3") {
-			s.createPermissiveAttackEntities(appId, e)
+			s.createExfiltration(appId, e)
 		}
 	}
 	return nil
