@@ -81,6 +81,16 @@ Zentaris framework creates a composite score that ranks paths by their overall r
 
 **Dynamic Risk Calculation**: TBD
 
+### Entity Risk Score
+
+```
+Entity Risk Score =
+    (Accessibility Score * Accessibility Weight) +
+    (Privilege Levels Score * Privilege Levels Weight) +
+    (Data Sensitivity Score * Data Sensitivity Weight) +
+    (Vulnerability Severity Score * Vulnerability Severity Weight)
+```
+
 ## Risk Prioritization
 
 Prioritization: The tool should automatically prioritize attack paths with the highest risk, offering a clear path forward for security teams.
