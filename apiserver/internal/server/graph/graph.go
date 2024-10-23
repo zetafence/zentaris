@@ -86,7 +86,7 @@ func (g *Graph) EvalAppData(w http.ResponseWriter, r *http.Request) {
 	// return the slice as JSON
 	w.Header().Set("Content-Type", "application/json")
 	evalResp := Response{
-		Status: fmt.Sprintf("success for %v", id),
+		Status: fmt.Sprintf("attack risk evaluated success for %v, see attack graphs", id),
 	}
 	json.NewEncoder(w).Encode(evalResp)
 }

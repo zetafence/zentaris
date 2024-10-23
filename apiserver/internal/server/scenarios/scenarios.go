@@ -159,7 +159,7 @@ func (s *Scenario) createExfiltration(aid string, entity graph.Entity) error {
 		"ExFiltrationType": entity.Kind,
 		"App":              aid,
 	}
-	if c, ok := entity.Attributes["OverlyPermissive"]; ok && c == "0" {
+	if c, ok := entity.Attributes["OverlyPermissive"]; ok && c == "none" {
 		attrs["OverlyPermissive"] = "none"
 		attrs["Risk"] = "critical"
 		s.createAttackGraphEntity(aid, "Privilege Escalation Exfiltration of Exposed Sensitive Information", attrs)
