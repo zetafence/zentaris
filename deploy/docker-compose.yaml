@@ -5,11 +5,10 @@ services:
     image: docker.io/zentaris/apiserver:v1.0.0
     container_name: zentaris_apiserver
     volumes:
-      - ./certs/server.crt:/etc/certs/server.crt
-      - ./certs/server.key:/etc/certs/server.key
-    command: -httpsPort 9443 -cert /etc/certs/server.crt -key /etc/certs/server.key
+      - certs:/etc/certs
+    command: -httpsPort 8443 -cert /etc/certs/server.crt -key /etc/certs/server.key
     ports:
-      - 9443:9443
+      - 8443:8443
     networks:
       - knetwork
     restart: unless-stopped
@@ -19,11 +18,10 @@ services:
     stdin_open: true
     container_name: zentaris_uiserver
     volumes:
-      - ./certs/server.crt:/etc/certs/server.crt
-      - ./certs/server.key:/etc/certs/server.key
+      - certs:/etc/certs
     environment:
         - NODE_ENV=production
-        - REACT_APP_SERVER=zentaris_apiserver:9443
+        - REACT_APP_SERVER=localhost:8443
         - HTTPS=true
         - PORT=3000
         - SSL_CRT_FILE=/etc/certs/server.crt
@@ -36,6 +34,9 @@ services:
     depends_on:
       - zentaris_apiserver
     restart: unless-stopped
+
+volumes:
+  certs:
 
 networks:
   knetwork:
