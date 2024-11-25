@@ -10,7 +10,7 @@
 
 ## Zentaris Attack Path Risk Categorization Using Hypergraphs
 
-Zentaris is a Cloud-Agnostic Attack Path Risk Categorization tool that maps cloud attack paths playbooks to a comprehensive risk categorization system. The framework heavily utilizes graph semantics to effectively model and evaluate risk profiles. Such a tool can be utilized to discover and categorize risks across AWS, GCP, Azure infrastructures, as well as with Kubernetes clusters. The risk evaluation system enables enterprises to categorize those playbooks ane evaluate by risk levels, providing enterprises with a contextual understanding, and threat priorities.
+Zentaris is a Cloud-Agnostic Attack Path Risk Categorization tool that maps cloud attack paths playbooks to a comprehensive risk categorization system. The framework heavily utilizes graph semantics to effectively model and evaluate risk profiles. Such a tool can be utilized to discover and categorize risks across AWS, GCP, Azure infrastructures, as well as with Kubernetes clusters. The risk evaluation system enables enterprises to categorize those playbooks and evaluate by risk levels, providing enterprises with a contextual understanding, and threat priorities.
 
 ## Architecture
 
@@ -139,6 +139,10 @@ See [Zentaris API Server](apiserver/README.md) for details.
 ## Zentaris UI Server
 
 See [Zentaris UI Server](webui/README.md) for details.
+
+## Presentation at Black Hat, SecTor Toronto 2024
+
+See ["Zentaris: Attack Path Risk Categorization Using Hypergraphs"](https://pitch.com/v/arsenal_sector2024---zentaris_-attack-path-risk-categorization-using-hypergraphs-2-rx5uuj) for details.
 
 <br/>OSS sponsored with ![Red Heart](https://img.shields.io/badge/-❤-ff0000?style=for-the-badge) by
     <a href="https://zetafence.com">
